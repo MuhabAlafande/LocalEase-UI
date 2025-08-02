@@ -1,0 +1,50 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: cornflowerblue;
+  font-family: 'Merienda', serif;
+  color: darkslategrey;
+}
+
+.logo {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.search-icon {
+  cursor: pointer;
+}
+
+.browse {
+  display: flex;
+  align-items: start;
+}
+
+.browse p {
+  cursor: pointer;
+  margin: 0 1.5rem;
+  font-size: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid darkslategray;
+  transition: 0.2s ease-in-out;
+}
+
+.browse p:hover {
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+::ng-deep .auth-buttons .p-button {
+  margin: 0 0.75rem;
+  width: 120px;
+  background-color: orange;
+  transition: 0.2s ease-in-out;
+}
+
+::ng-deep .auth-buttons .p-button:hover {
+  background-color: white;
+  color: orange;
+  border: 1px solid orange;
+}

@@ -1,18 +1,14 @@
 <header>
   <p class="logo">LocalEase</p>
 
-  <p-iconfield>
-    <input type="text" pInputText placeholder="Search by Keyword" [(ngModel)]="searchText"/>
-    <p-inputicon class="pi pi-search search-icon" (click)="onSearchClick()"/>
-  </p-iconfield>
-
-  <div class="browse">
-    <p (click)="browseByCategoryClick()">Browse by Category</p>
-    <p (click)="browseByRegionClick()">Browse by Region</p>
-  </div>
-
-  <div class="auth-buttons">
-    <p-button (onClick)="register()">Register</p-button>
-    <p-button (onClick)="login()">Login</p-button>
+  <div class="nav-sections">
+    <p class="nav-section-item">Home</p>
+    <p class="nav-section-item">Bookings</p>
+    @if (isLoggedIn()) {
+      <p class="nav-section-item">Profile</p>
+    } @else {
+      <p class="nav-section-item">Register</p>
+      <p class="nav-section-item">Login</p>
+    }
   </div>
 </header>

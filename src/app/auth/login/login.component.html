@@ -1,0 +1,30 @@
+<div class="container">
+  <form class="card" [formGroup]="loginForm">
+    <h2>Login</h2>
+    <div>
+      <p-iconfield>
+        <input
+          pInputText
+          placeholder="example@example.com"
+          type="email"
+          formControlName="email"
+        />
+        <p-inputicon class="pi pi-at" />
+      </p-iconfield>
+    </div>
+
+    <div>
+      <p-iconfield>
+        <input
+          pInputText
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        />
+        <p-inputicon class="pi pi-key" />
+      </p-iconfield>
+    </div>
+
+    <p-button (onClick)="onSubmitForm()" label="Login" />
+  </form>
+</div>

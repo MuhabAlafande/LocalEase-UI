@@ -1,0 +1,15 @@
+<header>
+  <p class="logo">LocalEase</p>
+
+  <div class="nav-sections">
+    @if (isLoggedIn() | async) {
+      <p class="nav-section-item">Home</p>
+      <p class="nav-section-item">Bookings</p>
+      <p class="nav-section-item">Profile</p>
+      <p class="nav-section-item" (click)="logout()">Logout</p>
+    } @else {
+      <p class="nav-section-item" (click)="navigateToRegister()">Register</p>
+      <p class="nav-section-item" (click)="navigateToLogin()">Login</p>
+    }
+  </div>
+</header>

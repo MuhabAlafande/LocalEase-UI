@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.card {
+  width: 60%;
+  padding: 1rem;
+  background-color: #3f70f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card h2 {
+  text-align: center;
+  color: white;
+}
+
+::ng-deep p-iconfield input {
+  width: 100%;
+}
+
+::ng-deep p-button {
+  display: grid;
+}

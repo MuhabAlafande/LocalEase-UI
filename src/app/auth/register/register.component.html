@@ -1,0 +1,83 @@
+<div class="container">
+  <form class="card" [formGroup]="registerForm">
+    <h2>Register</h2>
+    <div>
+      <p-iconfield>
+        <input
+          pInputText
+          placeholder="example@example.com"
+          type="email"
+          formControlName="email"
+        />
+        <p-inputicon class="pi pi-at" />
+      </p-iconfield>
+    </div>
+
+    <div>
+      <p-iconfield>
+        <input
+          pInputText
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        />
+        <p-inputicon class="pi pi-key" />
+      </p-iconfield>
+    </div>
+
+    <div>
+      <p-iconfield>
+        <input pInputText placeholder="User Name" formControlName="username" />
+        <p-inputicon class="pi pi-user" />
+      </p-iconfield>
+    </div>
+    <div>
+      <p-iconfield>
+        <input
+          pInputText
+          placeholder="079*******"
+          formControlName="phoneNumber"
+        />
+        <p-inputicon class="pi pi-phone" />
+      </p-iconfield>
+    </div>
+
+    <div>
+      <p-icon-field>
+        <p-autocomplete
+          placeholder="Select Location"
+          [suggestions]="(places | async) ?? []"
+          (completeMethod)="filterPlaces($event)"
+          formControlName="location"
+        ></p-autocomplete>
+        <p-inputicon class="pi pi-map-marker" />
+      </p-icon-field>
+    </div>
+
+    <div>
+      <p-autocomplete
+        placeholder="Select User Type"
+        [suggestions]="userTypes()"
+        [dropdown]="true"
+        [readonly]="true"
+        (onSelect)="onSelectUserType()"
+        (onDropdownClick)="getUserTypes()"
+        formControlName="userType"
+      ></p-autocomplete>
+    </div>
+
+    <div [hidden]="!showCategoriesField()">
+      <p-icon-field>
+        <p-autocomplete
+          placeholder="Select Service Category"
+          [suggestions]="(servicesCategories | async) ?? []"
+          (completeMethod)="filterServicesCategories($event)"
+          formControlName="serviceCategory"
+        ></p-autocomplete>
+        <p-inputicon class="pi pi-bars" />
+      </p-icon-field>
+    </div>
+
+    <p-button (onClick)="onSubmitForm()" label="Register" />
+  </form>
+</div>

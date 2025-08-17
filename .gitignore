@@ -32,4 +32,4 @@ yarn-error.log*
 *-debug.log
 .runtimeconfig.json
 
-src/environments/environment.local.ts
+src/environments/environment.ts

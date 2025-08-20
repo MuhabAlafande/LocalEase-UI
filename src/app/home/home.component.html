@@ -1,0 +1,31 @@
+<div class="main-container">
+  <div class="hero">
+    <div class="hero-background">
+      <p>Load professionals to your home</p>
+    </div>
+  </div>
+
+  <div class="search">
+    <p-autocomplete
+      placeholder="Search for Service"
+      [(ngModel)]="selectedService"
+      [suggestions]="(services | async) ?? []"
+      (completeMethod)="filterServices($event)"
+      optionLabel="displayName"
+      (onSelect)="onSelectService($event)"
+    ></p-autocomplete>
+  </div>
+
+  <div class="trending">
+    <p class="title">Trending Services</p>
+  </div>
+
+  <div class="services-grid">
+    @for (service of services | async; track service.id) {
+      <app-service-card
+        [service]="service"
+        (serviceClick)="onServiceClick($event)"
+      />
+    }
+  </div>
+</div>

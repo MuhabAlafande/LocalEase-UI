@@ -1,0 +1,11 @@
+<div class="card-container" (click)="onServiceClick()">
+  <div>
+    <img src="assets/images/test.png" [alt]="service().displayName" />
+  </div>
+
+  <div class="card-body">
+    <h2 class="service-name">{{ service().displayName }}</h2>
+    <p class="card-description">{{ service().description }}</p>
+    <p>{{ service().price | currency }}</p>
+  </div>
+</div>

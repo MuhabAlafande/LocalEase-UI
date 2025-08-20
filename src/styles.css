@@ -6,3 +6,9 @@ body {
   font-family: Inter, serif;
   position: relative;
 }
+
+h2,
+p {
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,82 @@
+.main-container {
+  width: 100vw;
+  height: calc(100vh - 89px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f0f4f4;
+  padding: 2rem;
+}
+
+.service-user-container {
+  width: 80%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.service-user-container .service-details,
+.service-user-container .user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.location-details {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 80%;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.location-sections {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-details .location-info,
+.location-details .nearby-places {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+}
+
+.card-header {
+  align-self: center;
+}
+
+.info-label {
+  font-weight: bold;
+}
+
+.divider {
+  width: 6px;
+  height: 100%;
+  background-color: #3f70f0;
+  align-self: center;
+  border-radius: 15px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+::ng-deep .p-button {
+  width: 155px;
+}

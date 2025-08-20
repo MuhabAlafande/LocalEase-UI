@@ -1,0 +1,86 @@
+<div class="main-container">
+  <div class="service-user-container">
+    <div class="service-details">
+      <h2 class="card-header">Service Details</h2>
+      <p>
+        <span class="info-label">Service Name:</span>
+        {{ service()?.displayName }}
+      </p>
+      <p>
+        <span class="info-label">Description:</span>
+        {{ service()?.description }}
+      </p>
+      <p>
+        <span class="info-label">Service Category:</span>
+        {{ serviceCategory()?.name }}
+      </p>
+      <p>
+        <span class="info-label">Price:</span> {{ service()?.price | currency }}
+      </p>
+    </div>
+
+    <div class="user-info">
+      <h2 class="card-header">Provider Information</h2>
+      <p>
+        <span class="info-label">Provider Name:</span>
+        {{ user()?.username }}
+      </p>
+      <p>
+        <span class="info-label">Email:</span>
+        {{ user()?.email }}
+      </p>
+      <p>
+        <span class="info-label">Phone Number:</span>
+        {{ user()?.phone }}
+      </p>
+    </div>
+  </div>
+
+  <div class="location-details">
+    <div class="location-info">
+      <h2 class="card-header">Location Details</h2>
+      <p>
+        <span class="info-label">Location Name:</span>
+        {{ place()?.name }}
+      </p>
+      <p>
+        <span class="info-label">Address:</span>
+        {{ place()?.address }}
+      </p>
+      <p>
+        <span class="info-label">City:</span>
+        {{ place()?.city }}
+      </p>
+      <p>
+        <span class="info-label">Code:</span>
+        {{ place()?.code }}
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="nearby-places">
+      <h2 class="card-header">Nearby Places</h2>
+      @for (nearbyPlace of nearbyPlaces(); track nearbyPlace.id) {
+        <p>
+          <span class="info-label">{{ $index + 1 }}:</span>
+          {{ nearbyPlace.address }}
+        </p>
+      }
+    </div>
+  </div>
+
+  <div class="actions">
+    <p-button label="Book" severity="info" [disabled]="!(isLoggedIn | async)" />
+    <p-button
+      label="Contact Provider"
+      severity="info"
+      [disabled]="!(isLoggedIn | async)"
+    />
+    <p-button
+      label="Review"
+      severity="info"
+      [disabled]="!(isLoggedIn | async)"
+    />
+  </div>
+</div>

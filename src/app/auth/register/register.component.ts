@@ -98,9 +98,20 @@ export class RegisterComponent {
 
   onSubmitForm() {
     if (this.registerForm.valid) {
-      this.authService.registerUser(this.registerForm.value).subscribe({
-        next: () => this.router.navigate(['']),
-      });
+      const user = {
+        id: this.registerForm.get('id')?.value,
+        email: this.registerForm.get('email')?.value,
+        username: this.registerForm.get('username')?.value,
+        phone: this.registerForm.get('phoneNumber')?.value,
+        location: this.registerForm.get('location')?.value,
+        userType: this.registerForm.get('userType')?.value,
+        serviceCategory: this.registerForm.get('serviceCategory')?.value,
+      };
+      this.authService
+        .registerUser(user, this.registerForm.get('password')?.value)
+        .subscribe({
+          next: () => this.router.navigate(['']),
+        });
     }
   }
 }

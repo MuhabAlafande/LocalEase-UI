@@ -15,12 +15,8 @@ export class HeaderComponent {
   private readonly router = inject(Router);
   isLoggedIn = computed(() => this.authService.isLoggedIn());
 
-  navigateToRegister() {
-    this.router.navigate(['authentication/register']);
-  }
-
-  navigateToLogin() {
-    this.router.navigate(['authentication/login']);
+  navigateTo(path: string) {
+    this.router.navigate([path]);
   }
 
   logout() {

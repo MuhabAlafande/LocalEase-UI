@@ -15,8 +15,19 @@ export class AuthService {
   private readonly loaderServices = inject(LoaderService);
   private readonly usersService = inject(UsersService);
   private readonly isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private readonly currentUserIdSubject = new BehaviorSubject<
+    string | undefined
+  >(undefined);
 
   constructor(private readonly auth: Auth) {}
+
+  getCurrentUserId() {
+    onAuthStateChanged(this.auth, (user) =>
+      this.currentUserIdSubject.next(user?.uid),
+    );
+
+    return this.currentUserIdSubject.asObservable();
+  }
 
   isLoggedIn(): Observable<boolean> {
     onAuthStateChanged(this.auth, (user) =>
@@ -25,19 +36,17 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
-  registerUser(user: IUser) {
+  registerUser(user: IUser, password: string) {
     this.loaderServices.show();
     return from(
-      createUserWithEmailAndPassword(this.auth, user.email, user.password)
+      createUserWithEmailAndPassword(this.auth, user.email, password)
         .then(() => {
-          this.signIn({ email: user.email, password: user.password }).subscribe(
-            {
-              next: async () => {
-                user.id = this.auth.currentUser!.uid;
-                await this.usersService.saveUser(user);
-              },
+          this.signIn({ email: user.email, password: password }).subscribe({
+            next: async () => {
+              user.id = this.auth.currentUser!.uid;
+              await this.usersService.saveUser(user);
             },
-          );
+          });
         })
         .catch((err) => console.log(err))
         .finally(() => this.loaderServices.hide()),

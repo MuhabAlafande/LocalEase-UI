@@ -2,14 +2,21 @@
   <p class="logo">LocalEase</p>
 
   <div class="nav-sections">
+    <p class="nav-section-item" (click)="navigateTo('')">Home</p>
     @if (isLoggedIn() | async) {
-      <p class="nav-section-item">Home</p>
       <p class="nav-section-item">Bookings</p>
-      <p class="nav-section-item">Profile</p>
+      <p class="nav-section-item" (click)="navigateTo('profile')">Profile</p>
       <p class="nav-section-item" (click)="logout()">Logout</p>
     } @else {
-      <p class="nav-section-item" (click)="navigateToRegister()">Register</p>
-      <p class="nav-section-item" (click)="navigateToLogin()">Login</p>
+      <p
+        class="nav-section-item"
+        (click)="navigateTo('authentication/register')"
+      >
+        Register
+      </p>
+      <p class="nav-section-item" (click)="navigateTo('authentication/login')">
+        Login
+      </p>
     }
   </div>
 </header>

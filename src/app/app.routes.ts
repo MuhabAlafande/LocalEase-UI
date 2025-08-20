@@ -1,6 +1,13 @@
 import { Routes } from '@angular/router';
+import { MainLayoutWrapperComponent } from './main-layout/main-layout-wrapper.component';
+import { MainRoutes } from './main-layout/main-layout.routes';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: MainLayoutWrapperComponent,
+    children: [...MainRoutes],
+  },
   {
     path: 'authentication/login',
     loadComponent: () =>

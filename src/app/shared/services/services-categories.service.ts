@@ -2,7 +2,9 @@ import { IServiceCategory } from '../models/IServiceCategory';
 import { Injectable } from '@angular/core';
 import {
   collection,
+  doc,
   Firestore,
+  getDoc,
   getDocs,
   limit,
   query,
@@ -42,5 +44,13 @@ export class ServicesCategoriesService {
     );
     const snapshot = await getDocs(q);
     return snapshot.docs[0].data() as IServiceCategory;
+  }
+
+  getCategoryById(categoryId: string) {
+    const ref = doc(this.firestore, 'servicesCategories', categoryId);
+    const promise = getDoc(ref).then((docSnap) => {
+      return docSnap.exists() ? (docSnap.data() as IServiceCategory) : null;
+    });
+    return from(promise);
   }
 }

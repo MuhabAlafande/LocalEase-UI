@@ -1,0 +1,34 @@
+<div class="card-container">
+  <div class="card-main-content">
+    <img
+      [src]="'assets/images/' + serviceCategory()?.imageUrl"
+      alt="Service Category"
+    />
+    <div class="card-info">
+      <p>{{ serviceProvider()?.username }}</p>
+      <p>{{ serviceCategory()?.name }}</p>
+      <p>
+        {{ booking().startDate.toLocaleDateString() }}
+        <span class="time-interval">{{
+          booking().startDate.toLocaleTimeString() +
+            " - " +
+            booking().endDate.toLocaleTimeString()
+        }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card-footer">
+    <div class="status-tag">
+      {{ booking().status }}
+    </div>
+    <p-button
+      label="Review"
+      severity="success"
+      [disabled]="isReviewDisabled()"
+      (onClick)="openReviewDialog()"
+    />
+  </div>
+</div>

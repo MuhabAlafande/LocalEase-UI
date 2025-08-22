@@ -1,0 +1,24 @@
+.main-container {
+  width: 50%;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info {
+  font-size: 1.2rem;
+}
+
+.info .info-label {
+  font-weight: bolder;
+}
+
+.comment {
+  width: 75%;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: justify;
+}

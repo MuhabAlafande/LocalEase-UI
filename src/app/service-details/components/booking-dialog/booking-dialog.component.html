@@ -1,0 +1,41 @@
+<div class="main-container">
+  <div class="date-pickers-container">
+    <div class="picker">
+      <label for="selectedDate">Select Date</label>
+      <p-datePicker
+        [(ngModel)]="selectedDate"
+        [showTime]="false"
+        [showIcon]="true"
+        [inline]="true"
+        inputId="selectedDate"
+        dateFormat="mm/dd/yy"
+      />
+    </div>
+
+    <div class="time-range-container">
+      <div class="picker">
+        <label for="startTime">Start Time</label>
+        <p-datePicker
+          [(ngModel)]="startTime"
+          [timeOnly]="true"
+          [showIcon]="true"
+          [inline]="true"
+          inputId="startTime"
+        />
+      </div>
+
+      <div class="picker">
+        <label for="endTime">End Time</label>
+        <p-datePicker
+          [(ngModel)]="endTime"
+          [timeOnly]="true"
+          [showIcon]="true"
+          [inline]="true"
+          inputId="endTime"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-button severity="success" label="Book" (onClick)="onBookClick()" />
+</div>

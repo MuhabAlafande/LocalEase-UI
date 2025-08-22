@@ -23,16 +23,25 @@
       <h2 class="card-header">Provider Information</h2>
       <p>
         <span class="info-label">Provider Name:</span>
-        {{ user()?.username }}
+        {{ providerUser()?.username }}
       </p>
       <p>
         <span class="info-label">Email:</span>
-        {{ user()?.email }}
+        {{ providerUser()?.email }}
       </p>
       <p>
         <span class="info-label">Phone Number:</span>
-        {{ user()?.phone }}
+        {{ providerUser()?.phone }}
       </p>
+
+      @if (!isProvider()) {
+        <p-button
+          label="Details"
+          class="provider-details-button"
+          severity="info"
+          (onClick)="navigateToProviderInfo()"
+        />
+      }
     </div>
   </div>
 
@@ -70,17 +79,26 @@
     </div>
   </div>
 
-  <div class="actions">
-    <p-button label="Book" severity="info" [disabled]="!(isLoggedIn | async)" />
-    <p-button
-      label="Contact Provider"
-      severity="info"
-      [disabled]="!(isLoggedIn | async)"
-    />
-    <p-button
-      label="Review"
-      severity="info"
-      [disabled]="!(isLoggedIn | async)"
-    />
-  </div>
+  @if (!isProvider()) {
+    <div class="actions">
+      <p-button
+        label="Book"
+        severity="info"
+        [disabled]="isBookingDisabled()"
+        (onClick)="openBookingDialog()"
+      />
+      <p-button
+        label="Contact Provider"
+        severity="info"
+        [disabled]="!(isLoggedIn | async)"
+        (onClick)="openChatDialog()"
+      />
+      <p-button
+        label="Review"
+        severity="info"
+        [disabled]="isReviewDisabled()"
+        (onClick)="openReviewDialog()"
+      />
+    </div>
+  }
 </div>

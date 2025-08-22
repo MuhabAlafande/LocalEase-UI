@@ -41,4 +41,9 @@ export class UsersService {
     });
     return from(promise);
   }
+
+  updateUserRating(userId: string, rating: number) {
+    const ref = doc(this.firestore, 'users', userId);
+    return setDoc(ref, { rating }, { merge: true });
+  }
 }

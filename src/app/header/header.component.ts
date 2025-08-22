@@ -16,6 +16,11 @@ export class HeaderComponent {
   isLoggedIn = computed(() => this.authService.isLoggedIn());
 
   navigateTo(path: string) {
+    if (path === 'profile') {
+      this.authService
+        .getCurrentUserId()
+        .subscribe((userId) => this.router.navigate([path, userId!]));
+    }
     this.router.navigate([path]);
   }
 

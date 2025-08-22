@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import { MainLayoutWrapperComponent } from './main-layout/main-layout-wrapper.component';
 import { MainRoutes } from './main-layout/main-layout.routes';
+import { DialogService } from 'primeng/dynamicdialog';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutWrapperComponent,
+    providers: [DialogService],
     children: [...MainRoutes],
   },
   {

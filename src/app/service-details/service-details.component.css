@@ -77,6 +77,10 @@
   padding: 1rem;
 }
 
-::ng-deep .p-button {
+::ng-deep .actions .p-button {
   width: 155px;
+}
+
+::ng-deep .provider-details-button {
+  align-self: center;
 }

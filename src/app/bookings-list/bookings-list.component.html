@@ -1,0 +1,13 @@
+<div class="main-container">
+  <p class="title">Bookings</p>
+
+  @for (booking of bookings(); track booking.id) {
+    <app-booking-card
+      [booking]="booking"
+      [isReviewDisabled]="
+        isReviewExist(booking.serviceId) ||
+        booking.status !== BookingStatus.Completed
+      "
+    />
+  }
+</div>

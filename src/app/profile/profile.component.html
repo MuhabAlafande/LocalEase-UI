@@ -10,30 +10,14 @@
   @if (user()?.userType === UserType.ServiceProvider) {
     <p class="provider-category">{{ servicesCategory()?.name }}</p>
 
-    <div class="rating-container">
-      <p-rating [readonly]="true" [ngModel]="user()?.rating">
-        <ng-template pTemplate="onicon">
-          <img
-            src="../../assets/images/star-on.png"
-            height="24"
-            width="24"
-            alt="On Star"
-          />
-        </ng-template>
-
-        <ng-template pTemplate="officon">
-          <img
-            src="../../assets/images/star-off.png"
-            height="24"
-            width="24"
-            alt="Off Star"
-          />
-        </ng-template>
-      </p-rating>
-    </div>
+    <app-star-rating [readOnly]="true" [value]="user()?.rating" />
 
     <div class="reviews-section">
       <p class="reviews-title">Reviews</p>
+
+      @for (review of reviews(); track review.id) {
+        <app-review-card [review]="review" [reviewerName]="user()?.username!" />
+      }
     </div>
   }
 </div>

@@ -1,0 +1,9 @@
+<div class="main-container">
+  <p class="info"><span class="info-label">Name:</span> {{ reviewerName() }}</p>
+
+  <p class="comment">
+    {{ review().comment }}
+  </p>
+
+  <app-star-rating [value]="review().rating" />
+</div>

@@ -14,8 +14,17 @@ export const MainRoutes: Routes = [
       ),
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     loadComponent: () =>
-      import('../profile/profile.component').then((c) => c.ProfileComponent),
+      import('../profile/profile.component').then(
+        (c) => c.ProfileComponent,
+      ),
+  },
+  {
+    path: 'bookings',
+    loadComponent: () =>
+      import('../bookings-list/bookings-list.component').then(
+        (c) => c.BookingsListComponent,
+      ),
   },
 ];

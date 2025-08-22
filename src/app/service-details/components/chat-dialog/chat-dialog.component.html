@@ -1,0 +1,53 @@
+<div class="main-container">
+  <div class="messages-container">
+    @if ((messages$ | async)?.length === 0) {
+      <div class="no-messages-container">
+        <p>No messages yet. Start the conversation!</p>
+      </div>
+    }
+    @for (message of messages$ | async; track message.id) {
+      @if (currentUserId() === message.senderUser.id) {
+        <div class="message message-right">
+          <div class="message-info">
+            <p class="message-sender">You</p>
+            <p class="message-time">
+              {{
+                message.createdAt.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              }}
+            </p>
+          </div>
+
+          <p class="message-body">{{ message.body }}</p>
+        </div>
+      } @else {
+        <div class="message message-left">
+          <div class="message-info">
+            <p class="message-sender">{{ message.receiverUser.username }}</p>
+            <p class="message-time">
+              {{
+                message.createdAt.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              }}
+            </p>
+          </div>
+          <p class="message-body">{{ message.body }}</p>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="send-message-tools">
+    <input
+      pInputText
+      placeholder="Message"
+      [(ngModel)]="messageValue"
+      (keyup.enter)="onEnter()"
+    />
+    <p-button type="button" icon="pi pi-send" (onClick)="sendMessage()" />
+  </div>
+</div>

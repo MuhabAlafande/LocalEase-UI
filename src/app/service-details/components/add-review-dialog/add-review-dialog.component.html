@@ -1,0 +1,30 @@
+<form class="main-container" [formGroup]="ratingForm">
+  <app-star-rating
+    (changeValue)="onRatingChange($event)"
+    [value]="ratingForm.get('rating')?.value"
+  />
+
+  <textarea
+    pInputTextarea
+    class="comment-area"
+    placeholder="Write your comment here..."
+    formControlName="comment"
+  >
+  </textarea>
+
+  <div class="dialog-actions">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      size="small"
+      (onClick)="dialogRef.close()"
+    />
+    <p-button
+      label="Submit"
+      severity="primary"
+      size="small"
+      [disabled]="ratingForm.invalid || !ratingForm.dirty"
+      (onClick)="submitReview()"
+    />
+  </div>
+</form>

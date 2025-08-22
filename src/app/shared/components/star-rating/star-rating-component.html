@@ -1,0 +1,19 @@
+<p-rating [readonly]="readOnly()" [(ngModel)]="value">
+  <ng-template pTemplate="onicon">
+    <img
+      src="../../assets/images/star-on.png"
+      height="24"
+      width="24"
+      alt="On Star"
+    />
+  </ng-template>
+
+  <ng-template pTemplate="officon">
+    <img
+      src="../../assets/images/star-off.png"
+      height="24"
+      width="24"
+      alt="Off Star"
+    />
+  </ng-template>
+</p-rating>

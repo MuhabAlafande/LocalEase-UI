@@ -123,16 +123,17 @@ export class ServiceDetailsComponent {
             console.log(bookings);
             console.log(reviews);
             this.isReviewDisabled.set(
-              reviews.length === 0 ||
-                bookings.length === 0 ||
-                reviews.some(
-                  (review) => review.serviceId === this.service()?.id,
-                ) ||
-                bookings.some(
-                  (booking) =>
-                    booking.serviceId !== this.service()?.id ||
-                    booking.status !== BookingStatus.Completed,
-                ),
+              false
+              // reviews.length === 0 ||
+              //   bookings.length === 0 ||
+              //   reviews.some(
+              //     (review) => review.serviceId === this.service()?.id,
+              //   ) ||
+              //   bookings.some(
+              //     (booking) =>
+              //       booking.serviceId !== this.service()?.id ||
+              //       booking.status !== BookingStatus.Completed,
+              //   ),
             );
           });
       });
@@ -143,7 +144,8 @@ export class ServiceDetailsComponent {
       .getUserBookings(this.currentUserId()!)
       .subscribe((bookings) => {
         this.isBookingDisabled.set(
-          bookings.some((booking) => booking.serviceId === this.service()?.id),
+          false
+          // bookings.some((booking) => booking.serviceId === this.service()?.id),
         );
       });
   }

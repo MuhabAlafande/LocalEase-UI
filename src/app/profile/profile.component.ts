@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { ServicesCategoriesService } from '../shared/services/services-categories.service';
 import { IServiceCategory } from '../shared/models/IServiceCategory';
@@ -12,7 +12,7 @@ import { ReviewCardComponent } from './components/review-card.component';
 import { UserType } from '../shared/models/UserType';
 
 @Component({
-  selector: 'app-service-provider-info',
+  selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   imports: [FormsModule, StarRatingComponent, ReviewCardComponent],
@@ -28,11 +28,13 @@ export class ProfileComponent {
   user = signal<IUser | null>(null);
   servicesCategory = signal<IServiceCategory | null>(null);
   reviews = signal<IReview[]>([]);
+  userId = input<string>();
+  withInfo = input<boolean>(true);
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.usersService
-        .getUserById(params.get('id')!)
+        .getUserById(this.userId() ?? params.get('id')!)
         .subscribe(async (user) => {
           if (user !== null) {
             this.user.set(user);

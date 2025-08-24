@@ -1,0 +1,48 @@
+<div class="main-container">
+  <div class="side-menu">
+    <p
+      class="side-menu-item"
+      [class.selected]="selectedTab() === 'bookings'"
+      (click)="onTabSelect('bookings')"
+    >
+      Bookings
+    </p>
+    <p
+      class="side-menu-item"
+      [class.selected]="selectedTab() === 'reviews'"
+      (click)="onTabSelect('reviews')"
+    >
+      Reviews
+    </p>
+    <p
+      class="side-menu-item"
+      [class.selected]="selectedTab() === 'chats'"
+      (click)="onTabSelect('chats')"
+    >
+      Chats
+    </p>
+    <p
+      class="side-menu-item"
+      [class.selected]="selectedTab() === 'profile'"
+      (click)="onTabSelect('profile')"
+    >
+      Profile
+    </p>
+    <p class="side-menu-item" (click)="logout()">Logout</p>
+  </div>
+  <div class="main-content">
+    @if (selectedTab() === "bookings") {
+      <app-provider-bookings [bookings]="bookings" />
+    } @else if (selectedTab() === "reviews") {
+      <app-reviews-list [reviews]="reviews" />
+    } @else if (selectedTab() === "profile") {
+      <app-profile [userId]="(currentUserId$ | async)!" [withInfo]="false" />
+    } @else if (selectedTab() === "chats") {
+      <app-chats-list
+        [conversations]="conversations()"
+        [currentUserId]="(currentUserId$ | async)!"
+        [providerUser]="providerUser()!"
+      />
+    }
+  </div>
+</div>

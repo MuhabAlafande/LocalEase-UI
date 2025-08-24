@@ -1,0 +1,43 @@
+<div class="main-container">
+  <h2 class="title">Bookings</h2>
+
+  <p-table [value]="bookings()" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th>ID</th>
+        <th>Service ID</th>
+        <th>Booker ID</th>
+        <th>Start Date</th>
+        <th>End date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-booking>
+      <tr>
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.serviceId }}</td>
+        <td>{{ booking.bookerId }}</td>
+        <td>{{ booking.startDate }}</td>
+        <td>{{ booking.endDate }}</td>
+        <td>{{ booking.status }}</td>
+        <td class="actions">
+          <p-button
+            label="Accept"
+            [disabled]="booking.status !== BookingStatus.InProgress"
+          />
+          <p-button
+            label="Reject"
+            severity="danger"
+            [disabled]="booking.status !== BookingStatus.InProgress"
+          />
+          <p-button
+            label="Complete"
+            [disabled]="booking.status !== BookingStatus.Booked"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

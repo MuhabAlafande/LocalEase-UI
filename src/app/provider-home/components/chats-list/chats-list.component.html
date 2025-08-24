@@ -1,0 +1,11 @@
+<div class="main-container">
+  <h2>Chats</h2>
+
+  @for (conversation of conversations(); track $index) {
+    <div class="conversation-card">
+      <p>{{ providerUser().username }}</p>
+      <p>{{ conversation[1][0].createdAt }}</p>
+      <p>Service ID: {{ conversation[1][0].serviceId }}</p>
+    </div>
+  }
+</div>

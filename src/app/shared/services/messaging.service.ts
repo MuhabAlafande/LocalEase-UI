@@ -12,6 +12,7 @@ import {
 } from '@angular/fire/firestore';
 import { IMessage } from '../models/IMessage';
 import { Observable } from 'rxjs';
+import { IConversation } from '../models/IConversation';
 
 @Injectable({ providedIn: 'root' })
 export class MessagingService {
@@ -36,6 +37,27 @@ export class MessagingService {
       createdAt: new Date(),
       serviceId,
     }).then(() => document.id);
+  }
+
+  getConversationsForService(serviceId: string): Observable<IConversation[]> {
+    return new Observable<IConversation[]>((observer) => {
+      const q = query(
+        collection(this.firestore, 'conversations'),
+        where('serviceId', '==', serviceId),
+      );
+
+      onSnapshot(q, (snapshot) => {
+        const conversations = snapshot.docs.map((doc) => {
+          return {
+            id: doc.data()['id'],
+            userId: doc.data()['userId'],
+            createdAt: doc.data()['createdAt'].toDate(),
+            serviceId: doc.data()['serviceId'],
+          };
+        });
+        observer.next(conversations);
+      });
+    });
   }
 
   getConversationMessages(

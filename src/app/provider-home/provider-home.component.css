@@ -1,0 +1,45 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f4f4;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.side-menu {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #3f70f0;
+}
+
+.side-menu-item {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.35rem;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.selected,
+.side-menu-item:hover {
+  background-color: #8b8f9b;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+::ng-deep .actions .p-button{
+  font-size: 0.7rem;
+  width: 100px
+}

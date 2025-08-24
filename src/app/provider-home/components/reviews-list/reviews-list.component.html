@@ -1,0 +1,7 @@
+<div class="main-container">
+  <h2>Reviews</h2>
+
+  @for (review of reviews(); track review.id) {
+    <app-review-card [review]="review" reviewerName="Mohab Alafandi" />
+  }
+</div>

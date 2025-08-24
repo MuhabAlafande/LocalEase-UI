@@ -7,7 +7,7 @@
 
   <p class="name">{{ user()?.username }}</p>
 
-  @if (user()?.userType === UserType.ServiceProvider) {
+  @if (user()?.userType === UserType.ServiceProvider && withInfo()) {
     <p class="provider-category">{{ servicesCategory()?.name }}</p>
 
     <app-star-rating [readOnly]="true" [value]="user()?.rating" />

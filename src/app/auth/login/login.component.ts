@@ -11,6 +11,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../../shared/services/users.service';
+import { UserType } from '../../shared/models/UserType';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly usersService = inject(UsersService);
   private readonly router = inject(Router);
   loginForm!: FormGroup;
 
@@ -38,7 +41,15 @@ export class LoginComponent {
   onSubmitForm() {
     if (this.loginForm.valid) {
       this.authService.signIn(this.loginForm.value).subscribe({
-        next: () => this.router.navigate(['']),
+        next: () => {
+          this.authService.getCurrentUserId().subscribe((userId) => {
+            this.usersService.getUserById(userId!).subscribe((user) => {
+              if (user!.userType === UserType.Customer)
+                this.router.navigate(['']);
+              else this.router.navigate(['dashboard']);
+            });
+          });
+        },
       });
     }
   }
